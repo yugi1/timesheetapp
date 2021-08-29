@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { DepartmentsService } from '../../services/departments.service';
+import { Department } from 'src/app/interfaces/department';
 
 @Component({
   selector: 'app-departments',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./departments.component.scss']
 })
 export class DepartmentsComponent implements OnInit {
-
-  constructor() { }
-
+  @Injectable() departments: Department[] = [];
+  constructor(
+    private departmentsService: DepartmentsService
+  ) { }
   ngOnInit(): void {
+    this.departments = this.departmentsService.departments;
   }
 
 }
